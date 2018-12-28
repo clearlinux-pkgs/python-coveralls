@@ -4,7 +4,7 @@
 #
 Name     : python-coveralls
 Version  : 2.9.1
-Release  : 1
+Release  : 2
 URL      : https://files.pythonhosted.org/packages/2e/69/c702223d886b17a05fa356cca009e8e6dd8d7497e7268c9dbfab046b8cd6/python-coveralls-2.9.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/2e/69/c702223d886b17a05fa356cca009e8e6dd8d7497e7268c9dbfab046b8cd6/python-coveralls-2.9.1.tar.gz
 Summary  : Python interface to coveralls.io API
