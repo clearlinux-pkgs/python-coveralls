@@ -1,5 +1,5 @@
 PKG_NAME := python-coveralls
-URL = https://files.pythonhosted.org/packages/2e/69/c702223d886b17a05fa356cca009e8e6dd8d7497e7268c9dbfab046b8cd6/python-coveralls-2.9.1.tar.gz
+URL = https://files.pythonhosted.org/packages/c2/87/a50e2c1844578d6e4f0d070f607abcec66413883d213eccdb0a19cdff537/python-coveralls-2.9.2.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
