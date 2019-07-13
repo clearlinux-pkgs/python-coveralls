@@ -4,7 +4,7 @@
 #
 Name     : python-coveralls
 Version  : 2.9.2
-Release  : 4
+Release  : 5
 URL      : https://files.pythonhosted.org/packages/c2/87/a50e2c1844578d6e4f0d070f607abcec66413883d213eccdb0a19cdff537/python-coveralls-2.9.2.tar.gz
 Source0  : https://files.pythonhosted.org/packages/c2/87/a50e2c1844578d6e4f0d070f607abcec66413883d213eccdb0a19cdff537/python-coveralls-2.9.2.tar.gz
 Summary  : Provide Seemless integration with coveralls.io
