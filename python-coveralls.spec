@@ -4,10 +4,10 @@
 #
 Name     : python-coveralls
 Version  : 2.9.3
-Release  : 9
+Release  : 10
 URL      : https://files.pythonhosted.org/packages/a2/55/9db73eeecbb832252e763dc66aa60551fb4560deffda493b56e83602429c/python-coveralls-2.9.3.tar.gz
 Source0  : https://files.pythonhosted.org/packages/a2/55/9db73eeecbb832252e763dc66aa60551fb4560deffda493b56e83602429c/python-coveralls-2.9.3.tar.gz
-Summary  : Provide Seemless integration with coveralls.io
+Summary  : Python interface to coveralls.io API
 Group    : Development/Tools
 License  : Apache-2.0
 Requires: python-coveralls-bin = %{version}-%{release}
@@ -25,115 +25,8 @@ BuildRequires : requests
 BuildRequires : six
 
 %description
-====================================
 Python interface to coveralls.io API
-====================================
-
-.. image:: https://api.travis-ci.org/z4r/python-coveralls.png?branch=master
-    :target: http://travis-ci.org/z4r/python-coveralls
-.. image:: https://coveralls.io/repos/z4r/python-coveralls/badge.png?branch=master
-    :target: https://coveralls.io/r/z4r/python-coveralls
-.. image:: https://img.shields.io/pypi/v/python-coveralls.svg
-    :target: https://pypi.python.org/pypi/python-coveralls/
-.. image:: https://img.shields.io/pypi/dm/python-coveralls.svg
-    :target: https://pypi.python.org/pypi/python-coveralls/
-.. image:: https://img.shields.io/pypi/wheel/python-coveralls.svg
-    :target: https://pypi.python.org/pypi/python-coveralls/
-    :alt: Wheel Status
-
-This package provides a module to interface with the https://coveralls.io API.
-
-INSTALLING THE PKG
-==================
-Using pip::
-
-    $ pip install python-coveralls
-
-...Or simply add it to your requirements.
-
-
-CONFIGURATION
-=============
-If you're not using Travis, Coveralls for Python uses a ``.coveralls.yml`` file at the root level of your repository to configure options.
-The only required option is ``repo_token`` (found on your repository's page on Coveralls) to specify which project on Coveralls your project maps to.
-Another important option is is ``service_name`` which allows you to specify where Coveralls should look to find additional information about your builds. This can be any string, but using travis-ci or travis-pro will allow Coveralls to fetch branch data, comment on pull requests, and more.
-A ``.coveralls.yml`` file configured for Travis Pro:
-
-.. code-block:: yaml
-
-    repo_token: abcdef1234569abdcef
-    service_name: travis-pro
-    parallel: true # if the CI is running your build in parallel
-
-if you don't want the ``repo_token`` under source control, set it in your ``coveralls`` command::
-
-    COVERALLS_REPO_TOKEN=abcdef1234569abdcef coveralls
-
-TRAVIS.YML
-==========
-Create a ``.coverage`` file and you can use `coverage <https://pypi.python.org/pypi/coverage>`_,
-`pytest-cov <https://pypi.python.org/pypi/pytest-cov>`_, or
-`nosexcover <https://pypi.python.org/pypi/nosexcover>`_.
-Then you can add in the **after_success** step::
-
-    coveralls
-
-It should look like something like:
-
-.. code-block:: yaml
-
-    language: python
-    python:
-      - "2.6"
-      - "2.7"
-    install:
-      - pip install -e . --use-mirrors
-    before_script:
-      - pip install -r test_requirements.txt --use-mirrors
-      - git clone https://github.com/z4r/python-coveralls-example.git
-      - cd python-coveralls-example
-      - git checkout -qf 17b8119796516195527dcb4f454a2ebd41d60244
-      - py.test example/tests.py --cov=example
-      - cd -
-    script:
-      - py.test coveralls/tests.py --doctest-modules --pep8 coveralls -v --cov coveralls --cov-report term-missing
-    after_success:
-      - coveralls
-
-COVERALLS OPTIONS
-=================
-You probably don't need to configure anything, but if you customize some option of `coverage` you would add it to `coveralls` too::
-
-    $ coveralls -h
-    usage: coveralls [-h] [--coveralls_url COVERALLS_URL] [--base_dir BASE_DIR]
-                     [--data_file DATA_FILE] [--config_file CONFIG_FILE]
-                     [--coveralls_yaml COVERALLS_YAML] [--ignore-errors]
-                     [--merge_file MERGE_FILE] [--nogit]
-
-    optional arguments:
-      -h, --help            show this help message and exit
-      --coveralls_url COVERALLS_URL, -u COVERALLS_URL
-                            coveralls.io api url
-      --base_dir BASE_DIR, -b BASE_DIR
-                            project root directory
-      --data_file DATA_FILE, -d DATA_FILE
-                            coverage file name
-      --config_file CONFIG_FILE, -c CONFIG_FILE
-                            coverage config file name
-      --coveralls_yaml COVERALLS_YAML, -y COVERALLS_YAML
-                            coveralls yaml file name
-      --ignore-errors, -i   ignore errors while reading source files
-      --merge_file MERGE_FILE, -m MERGE_FILE
-                            json file containing coverage data to be merged (for
-                            merging javascript coverage)
-      --nogit               do not gather git repo info
-
-
-
-
-.. image:: https://d2weczhvl823v0.cloudfront.net/z4r/python-coveralls/trend.png
-   :alt: Bitdeli badge
-   :target: https://bitdeli.com/free
+        ====================================
 
 %package bin
 Summary: bin components for the python-coveralls package.
@@ -165,7 +58,11 @@ python components for the python-coveralls package.
 Summary: python3 components for the python-coveralls package.
 Group: Default
 Requires: python3-core
-Provides: pypi(python-coveralls)
+Provides: pypi(python_coveralls)
+Requires: pypi(coverage)
+Requires: pypi(pyyaml)
+Requires: pypi(requests)
+Requires: pypi(six)
 
 %description python3
 python3 components for the python-coveralls package.
@@ -180,8 +77,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1583211440
-# -Werror is for werrorists
+export SOURCE_DATE_EPOCH=1583540385
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
